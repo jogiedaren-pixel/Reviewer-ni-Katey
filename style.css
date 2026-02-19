@@ -1,7 +1,8 @@
 :root {
     --bg-color: #f8f9fa;
     --card-bg: #ffffff;
-    --primary: #6c5ce7; /* Soft Purple */
+    --primary: #6c5ce7;
+    /* Soft Purple */
     --primary-hover: #5b4cc4;
     --secondary: #a29bfe;
     --text-main: #2d3436;
@@ -9,7 +10,17 @@
     --danger: #ff7675;
     --success: #00b894;
     --radius: 16px;
-    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    /* Category colors */
+    --cat-0: #6c5ce7;
+    /* Psych Assess - Purple */
+    --cat-1: #0984e3;
+    /* IO Psych - Blue */
+    --cat-2: #e17055;
+    /* Abnormal - Coral */
+    --cat-3: #00b894;
+    /* Dev Psych - Green */
 }
 
 * {
@@ -57,7 +68,8 @@ header p {
 main {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 80px; /* Space for fixed footer if needed */
+    padding-bottom: 80px;
+    /* Space for fixed footer if needed */
 }
 
 /* Form Styles */
@@ -70,6 +82,44 @@ main {
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.category-select {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.category-select label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: 'Outfit', sans-serif;
+    background: #fdfdfd;
+    color: var(--text-main);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23636e72' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: var(--secondary);
+    outline: none;
+    background-color: #fff;
 }
 
 input {
@@ -134,11 +184,41 @@ button:active {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .hero-btn .icon {
     font-size: 1.4rem;
+}
+
+/* Category Tabs */
+.category-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cat-tab {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: #eee;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.cat-tab.active {
+    background: var(--primary);
+    color: white;
+}
+
+.cat-tab:hover:not(.active) {
+    background: #ddd;
 }
 
 /* List Styles */
@@ -159,7 +239,7 @@ li {
     padding: 16px;
     border-radius: 12px;
     margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -169,16 +249,58 @@ li {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.card-header-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .q-text {
     font-weight: 500;
     color: var(--text-main);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .a-text {
     font-size: 0.85rem;
     color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Category Badges */
+.cat-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.cat-0 {
+    background: var(--cat-0);
+}
+
+.cat-1 {
+    background: var(--cat-1);
+}
+
+.cat-2 {
+    background: var(--cat-2);
+}
+
+.cat-3 {
+    background: var(--cat-3);
 }
 
 .delete-icon {
@@ -186,6 +308,8 @@ li {
     font-size: 1.2rem;
     cursor: pointer;
     padding: 4px;
+    flex-shrink: 0;
+    margin-left: 8px;
 }
 
 .delete-icon:hover {

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buddy Reviewer</title>
+    <meta name="description" content="BLEPP Buddy Reviewer - Sync flashcards to your ESP32 study companion">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -16,23 +19,37 @@
 
         <main>
             <div class="card-form">
-                <input type="text" id="questionInput" placeholder="Question (e.g. 2 + 2)" />
-                <input type="text" id="answerInput" placeholder="Answer (e.g. 4)" />
+                <div class="category-select">
+                    <label for="categorySelect">Subject</label>
+                    <select id="categorySelect">
+                        <option value="0">Psychological Assessment</option>
+                        <option value="1">Industrial Organizational Psychology</option>
+                        <option value="2">Abnormal Psychology</option>
+                        <option value="3">Developmental Psychology</option>
+                    </select>
+                </div>
+                <input type="text" id="questionInput" placeholder="Question" />
+                <input type="text" id="answerInput" placeholder="Answer" />
                 <button id="addBtn" class="primary-btn">Add Card</button>
             </div>
 
             <div class="deck-status">
-                <h3>Current Deck</h3>
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="cat-tab active" data-cat="all">All</button>
+                    <button class="cat-tab" data-cat="0">PA</button>
+                    <button class="cat-tab" data-cat="1">IO</button>
+                    <button class="cat-tab" data-cat="2">AP</button>
+                    <button class="cat-tab" data-cat="3">DP</button>
+                </div>
                 <ul id="cardList">
-                    <!-- Cards will be added here dynamically -->
                     <li class="empty-state">No cards added yet.</li>
                 </ul>
                 <div class="actions">
-                     <button id="clearBtn" class="secondary-btn">Clear Deck</button>
+                    <button id="clearBtn" class="secondary-btn">Clear Deck</button>
                 </div>
             </div>
         </main>
-        
+
         <footer>
             <button id="syncBtn" class="hero-btn">
                 <span class="icon">📡</span> Connect & Sync
@@ -42,4 +59,5 @@
     </div>
     <script src="app.js"></script>
 </body>
+
 </html>
