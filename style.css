@@ -1,0 +1,214 @@
+:root {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --primary: #6c5ce7; /* Soft Purple */
+    --primary-hover: #5b4cc4;
+    --secondary: #a29bfe;
+    --text-main: #2d3436;
+    --text-muted: #636e72;
+    --danger: #ff7675;
+    --success: #00b894;
+    --radius: 16px;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 24px;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+main {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 80px; /* Space for fixed footer if needed */
+}
+
+/* Form Styles */
+.card-form {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fdfdfd;
+}
+
+input:focus {
+    border-color: var(--secondary);
+    outline: none;
+    background: #fff;
+}
+
+/* Button Styles */
+button {
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.primary-btn:hover {
+    background: var(--primary-hover);
+}
+
+.secondary-btn {
+    background: white;
+    color: var(--danger);
+    border: 2px solid var(--danger);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.hero-btn {
+    background: var(--text-main);
+    color: white;
+    width: 100%;
+    padding: 20px;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.hero-btn .icon {
+    font-size: 1.4rem;
+}
+
+/* List Styles */
+.deck-status h3 {
+    margin-bottom: 12px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    background: var(--card-bg);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.q-text {
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.a-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.delete-icon {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.delete-icon:hover {
+    color: var(--danger);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    background: transparent;
+    box-shadow: none;
+    font-style: italic;
+    padding: 40px 0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: auto;
+}
+
+#statusText {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}

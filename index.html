@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddy Reviewer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Reviewer</h1>
+            <p>Sync flashcards to your device</p>
+        </header>
+
+        <main>
+            <div class="card-form">
+                <input type="text" id="questionInput" placeholder="Question (e.g. 2 + 2)" />
+                <input type="text" id="answerInput" placeholder="Answer (e.g. 4)" />
+                <button id="addBtn" class="primary-btn">Add Card</button>
+            </div>
+
+            <div class="deck-status">
+                <h3>Current Deck</h3>
+                <ul id="cardList">
+                    <!-- Cards will be added here dynamically -->
+                    <li class="empty-state">No cards added yet.</li>
+                </ul>
+                <div class="actions">
+                     <button id="clearBtn" class="secondary-btn">Clear Deck</button>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <button id="syncBtn" class="hero-btn">
+                <span class="icon">📡</span> Connect & Sync
+            </button>
+            <p id="statusText">Ready to connect</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
