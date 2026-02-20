@@ -4,59 +4,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buddy Reviewer</title>
-    <meta name="description" content="BLEPP Buddy Reviewer - Sync flashcards to your ESP32 study companion">
+    <title>BLEPP Buddy</title>
+    <meta name="description" content="Study Companion Reviewer">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <h1>Reviewer</h1>
-            <p>Sync flashcards to your device</p>
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <header class="main-header">
+            <div class="logo">
+                <span class="logo-icon">ψ</span>
+                <h1>BLEPP Buddy</h1>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggle" class="icon-btn" aria-label="Toggle Dark Mode">
+                    🌙
+                </button>
+                <button id="syncBtn" class="primary-btn sm">
+                    <span class="icon">📡</span> Sync
+                </button>
+            </div>
         </header>
 
         <main>
-            <div class="card-form">
-                <div class="category-select">
-                    <label for="categorySelect">Subject</label>
-                    <select id="categorySelect">
-                        <option value="0">Psychological Assessment</option>
-                        <option value="1">Industrial Organizational Psychology</option>
-                        <option value="2">Abnormal Psychology</option>
-                        <option value="3">Developmental Psychology</option>
-                    </select>
+            <!-- VIEW: HOME (Dashboard) -->
+            <section id="view-home" class="view active">
+                <div class="welcome-banner">
+                    <h2>Hello, Katey!</h2>
+                    <p>Ready to master your subjects?</p>
                 </div>
-                <input type="text" id="questionInput" placeholder="Question" />
-                <input type="text" id="answerInput" placeholder="Answer" />
-                <button id="addBtn" class="primary-btn">Add Card</button>
+
+                <div class="section-header">
+                    <h3>Your Study Sets</h3>
+                </div>
+
+                <div class="sets-grid" id="setsGrid">
+                    <!-- Cards injected by JS -->
+                </div>
+            </section>
+
+            <!-- VIEW: SET DETAILS (List & Edit) -->
+            <section id="view-set" class="view hidden">
+                <div class="view-header">
+                    <button class="back-btn" id="backToHome">← Library</button>
+                    <div class="set-info">
+                        <span class="set-badge" id="setBadge">PA</span>
+                        <h2 id="setTitle">Psych Assessment</h2>
+                        <p id="setCount">0 terms</p>
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button id="studyBtn" class="hero-btn">
+                        <span class="icon">🎴</span> Study Flashcards
+                    </button>
+                </div>
+
+                <div class="add-card-area">
+                    <h3>Add New Term</h3>
+                    <div class="input-group">
+                        <input type="text" id="newQuestion" placeholder="Term (Question)">
+                        <input type="text" id="newAnswer" placeholder="Definition (Answer)">
+                        <button id="addCardBtn" class="icon-btn-add">+</button>
+                    </div>
+                </div>
+
+                <div class="terms-section-header">
+                    <h3>Terms <span class="terms-count" id="termsCountLabel">0</span></h3>
+                    <button id="clearDeckBtn" class="danger-btn sm">🗑 Clear Deck</button>
+                </div>
+
+                <div class="terms-list" id="termsList">
+                    <!-- List items injected by JS -->
+                </div>
+            </section>
+
+            <!-- Confirmation Modal -->
+            <div id="confirmModal" class="modal-overlay hidden">
+                <div class="modal-box">
+                    <h3>Clear this deck?</h3>
+                    <p id="confirmMsg">This will delete all cards in this set. This cannot be undone.</p>
+                    <div class="modal-actions">
+                        <button id="confirmCancel" class="modal-btn cancel">Cancel</button>
+                        <button id="confirmOk" class="modal-btn danger">Delete All</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="deck-status">
-                <div class="category-tabs" id="categoryTabs">
-                    <button class="cat-tab active" data-cat="all">All</button>
-                    <button class="cat-tab" data-cat="0">PA</button>
-                    <button class="cat-tab" data-cat="1">IO</button>
-                    <button class="cat-tab" data-cat="2">AP</button>
-                    <button class="cat-tab" data-cat="3">DP</button>
+            <!-- VIEW: STUDY MODE (Flashcards) -->
+            <section id="view-study" class="view hidden">
+                <div class="study-header">
+                    <button class="close-btn" id="closeStudy">×</button>
+                    <span id="studyProgress">1 / 10</span>
+                    <button class="icon-btn" id="shuffleBtn" title="Shuffle">🔀</button>
                 </div>
-                <ul id="cardList">
-                    <li class="empty-state">No cards added yet.</li>
-                </ul>
-                <div class="actions">
-                    <button id="clearBtn" class="secondary-btn">Clear Deck</button>
+
+                <div class="flashcard-container">
+                    <div class="flashcard" id="activeCard">
+                        <div class="card-face card-front">
+                            <div class="card-content" id="cardFrontText">Question</div>
+                            <div class="hint">Tap to flip</div>
+                        </div>
+                        <div class="card-face card-back">
+                            <div class="card-content" id="cardBackText">Answer</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="study-controls">
+                    <button class="control-btn" id="prevCard">←</button>
+                    <button class="control-btn big" id="flipCardBtn">Flip</button>
+                    <button class="control-btn" id="nextCard">→</button>
+                </div>
+            </section>
         </main>
 
-        <footer>
-            <button id="syncBtn" class="hero-btn">
-                <span class="icon">📡</span> Connect & Sync
-            </button>
-            <p id="statusText">Ready to connect</p>
-        </footer>
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden">Sync Complete!</div>
     </div>
+
     <script src="app.js"></script>
 </body>
 
